@@ -1,0 +1,19 @@
+Lmd = 20101209180636
+UseNetwork = http
+AppMainTitle = 160.gif
+CheckCnt = 090
+PackageURL = http://appli.docomomarket.ne.jp/detail/BUY002_A2_001?uid=NULLGWDOCOMO&guid=on&cid=10000009092&urlRandomValue=d4fVYeAf2X5jjCHI2kBe
+AppIcon = 48.gif,96.gif
+AppName = ù{‚É‚á‚ñ‚±‘å?ú­?
+CheckInt = 001
+UseBrowser = launch
+TrustedAPID = 10000009092
+LastModified = Sun, 02 Mar 2025 16:01:43
+AppVer = 1.0.2
+AllowedHost = http://www.ponos.co.jp/i/taisenbaka/dm/
+AppClass = Main
+DrawArea = 240x240
+Sts = 00
+SuspendedCnt = 007
+AppSize = 120704
+SPsize = 468416
