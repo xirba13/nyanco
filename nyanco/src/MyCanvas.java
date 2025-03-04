@@ -6184,22 +6184,24 @@ class MyCanvas extends Canvas implements Runnable
                     graphics.drawImage(MyCanvas.img[69], n2 - 74, n3 - 122, 0, 0, 95, 101);
                     break;
                 }
-                if (n15 == 4) {
+                if (n15 == 4 || n15 == 5) {
                     graphics.drawImage(MyCanvas.img[69], n2 - 75, n3 - 125, 0, 101, 95, 103);
                     break;
                 }
+                /*
                 if (n15 == 5) {
                     graphics.drawImage(MyCanvas.img[69], n2 - 75, n3 - 122, 0, 0, 95, 101);
                     break;
                 }
+                */
                 if (n15 == 6) {
                     graphics.drawImage(MyCanvas.img[69], n2 - 64, n3 - 78, 95, 0, 50, 70);
-                    graphics.drawImage(MyCanvas.img[69], n2 - 14, n3 - 110, 105, 140, 62, 112);
+                    graphics.drawImage(MyCanvas.img[69], n2 - 14, n3 - 110, 105, 141, 62, 112);
                     break;
                 }
                 if (n15 == 7) {
                     graphics.drawImage(MyCanvas.img[69], n2 - 64, n3 - 78, 95, 0, 50, 70);
-                    graphics.drawImage(MyCanvas.img[69], n2 - 14, n3 - 77, 167, 140, 55, 76);
+                    graphics.drawImage(MyCanvas.img[69], n2 - 14, n3 - 110, 105, 141, 62, 112);
                     break;
                 }
                 break;

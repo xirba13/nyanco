@@ -10,9 +10,9 @@ public class ImageReplacerDef {
 
     public static void main(String[] args) throws IOException {
         String filePath = "nyanco.sp";
-        String newImagePath = "14.gif"; // Imagen de reemplazo
+        String newImagePath = "23.gif"; // Imagen de reemplazo
         // Pigge: 65
-        int imageNumber = 69; // Imagen que queremos reemplazar
+        int imageNumber = 70; // Imagen que queremos reemplazar
 
 
 

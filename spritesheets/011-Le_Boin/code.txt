@@ -1,0 +1,50 @@
+ case 12: {
+                if (n2 - 71 > 240 || n2 + 38 < 0) {
+                    break;
+                }
+                final int n16 = this.uni_pt3[10][n4][n5];
+                if (n16 == 0) {
+                    graphics.drawImage(MyCanvas.img[70], n2 - 65, n3 - 83, 0, 0, 67, 83);
+                    break;
+                }
+                if (n16 == 1) {
+                    graphics.drawImage(MyCanvas.img[70], n2 - 71, n3 - 80, 67, 0, 73, 80);
+                    break;
+                }
+                if (n16 >= 2 && n16 <= 3) {
+                    graphics.drawImage(MyCanvas.img[70], n2 - 48, n3 - 3, 67, 80, 43, 3);
+                    graphics.drawImage(MyCanvas.img[70], n2 - 65, n3 - 96 - n16, 146, 0, 67, 93);
+                    break;
+                }
+                if (n16 == 4) {
+                    graphics.drawImage(MyCanvas.img[70], n2 - 65, n3 - 89, 0, 83, 67, 89);
+                    break;
+                }
+                if (n16 >= 5 && n16 <= 6) {
+                    graphics.drawImage(MyCanvas.img[70], n2 - 60, n3 - 83, 114, 164, 95, 83);
+                    if (n16 == 5) {
+                        graphics.drawImage(MyCanvas.img[70], n2 - 37, n3 - 66, 146, 93, 75, 24);
+                        break;
+                    }
+                    break;
+                }
+                else if (n16 >= 7 && n16 <= 8) {
+                    graphics.drawImage(MyCanvas.img[70], n2 - 48, n3 - 81, 67, 83, 79, 81);
+                    if (n16 == 7) {
+                        graphics.drawImage(MyCanvas.img[70], n2 - 36, n3 - 72, 146, 117, 70, 44);
+                        break;
+                    }
+                    break;
+                }
+                else {
+                    if (n16 < 9 || n16 > 10) {
+                        break;
+                    }
+                    graphics.drawImage(MyCanvas.img[70], n2 - 48, n3 - 113, 0, 172, 69, 113);
+                    if (n16 == 9) {
+                        graphics.drawImage(MyCanvas.img[70], n2 - 16, n3 - 122, 69, 164, 45, 120);
+                        break;
+                    }
+                    break;
+                }
+            }
