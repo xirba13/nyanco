@@ -6180,12 +6180,12 @@ class MyCanvas extends Canvas implements Runnable
                     break;
                 }
                 graphics.drawImage(MyCanvas.img[69], n2 - 95, n3 - 71, 145, 0, 89, 71);
-                if (n15 == 3) {
-                    graphics.drawImage(MyCanvas.img[69], n2 - 74, n3 - 122, 0, 0, 95, 101);
+                if (n15 == 3 || n15 == 4) {
+                    graphics.drawImage(MyCanvas.img[69], n2 - 74, n3 - 110, 0, 0, 95, 101);
                     break;
                 }
-                if (n15 == 4 || n15 == 5) {
-                    graphics.drawImage(MyCanvas.img[69], n2 - 75, n3 - 125, 0, 101, 95, 103);
+                if (n15 == 5) {
+                    graphics.drawImage(MyCanvas.img[69], n2 - 70, n3 - 103, 0, 101, 95, 103);
                     break;
                 }
                 /*
@@ -6195,13 +6195,13 @@ class MyCanvas extends Canvas implements Runnable
                 }
                 */
                 if (n15 == 6) {
-                    graphics.drawImage(MyCanvas.img[69], n2 - 64, n3 - 78, 95, 0, 50, 70);
-                    graphics.drawImage(MyCanvas.img[69], n2 - 14, n3 - 110, 105, 141, 62, 112);
+                    graphics.drawImage(MyCanvas.img[69], n2 - 74, n3 - 78, 95, 0, 50, 70);
+                    graphics.drawImage(MyCanvas.img[69], n2 - 24, n3 - 110, 105, 141, 62, 112);
                     break;
                 }
                 if (n15 == 7) {
-                    graphics.drawImage(MyCanvas.img[69], n2 - 64, n3 - 78, 95, 0, 50, 70);
-                    graphics.drawImage(MyCanvas.img[69], n2 - 14, n3 - 110, 105, 141, 62, 112);
+                    graphics.drawImage(MyCanvas.img[69], n2 - 74, n3 - 78, 95, 0, 50, 70);
+                    graphics.drawImage(MyCanvas.img[69], n2 - 24, n3 - 110, 105, 141, 62, 112);
                     break;
                 }
                 break;
