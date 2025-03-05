@@ -10,9 +10,15 @@ public class ImageReplacerDef {
 
     public static void main(String[] args) throws IOException {
         String filePath = "nyanco.sp";
-        String newImagePath = "23.gif"; // Imagen de reemplazo
+        String newImagePath = "011.gif"; // Imagen de reemplazo
         // Pigge: 65
-        int imageNumber = 70; // Imagen que queremos reemplazar
+        // Jackie Peng: 66
+        // Gory: 67
+        // Baa Baa: 68
+        // Sir Seal: 69
+        // Le'Boin: 70
+        // Kang Gu: 71
+        int imageNumber = 71; // Imagen que queremos reemplazar
 
 
 
@@ -235,8 +241,10 @@ public class ImageReplacerDef {
 
     }
     // TODO BORRAR LOS PRIMEROS 64 BYTES (LAS PRIMERAS 4 LÍNEAS) ANTES DE METERLO EN EL JUEGO
-    // PARA METERLO EN EL JUEGO, DESDE DOJAEMULATOR: TOOLS -> SCRATCHPAD -> REPLACE -> Seleccionar el fichero -> APLLY -> SET
-    // SI SSALE UN WARNING DE QUE NO S EHAN COPIDAODTODOS LOS DATOS, AMPLIAR EL TAMAÑO DEL SP EN DOJAEMULATOR: ADF CONFIGURAION
+    // PARA METERLO EN EL JUEGO, DESDE DOJAEMULATOR: TOOLS -> SCRATCHPAD -> REPLACE -> Seleccionar
+    // el fichero -> APLLY -> SET
+    // SI SSALE UN WARNING DE QUE NO S EHAN COPIDAODTODOS LOS DATOS, AMPLIAR EL TAMAÑO DEL SP EN
+    // DOJAEMULATOR: ADF CONFIGURAION
 }
 
 
