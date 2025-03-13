@@ -6234,6 +6234,7 @@ class MyCanvas extends Canvas implements Runnable
                         graphics.drawImage(MyCanvas.img[70], n2 - 37, n3 - 66, 146, 93, 75, 24);
                         break;
                     }
+                    
                     break;
                 }
                 else if (n16 >= 7 && n16 <= 8) {
