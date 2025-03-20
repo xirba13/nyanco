@@ -22,7 +22,13 @@ public class ImageReplacerDef {
         // Techaer Bear: 73
         // Croco: 74
         // B.B. Bunny: 75
-        int imageNumber = 74; // Imagen que queremos reemplazar
+        // Squire Rel: 76
+        // Assassin Bear: 77
+        // Shy Boy: 78
+        // The Face: 79
+        // Mr. Sign: 82 (alredy in the game)
+        // Mooth: 83
+        int imageNumber = 75; // Imagen que queremos reemplazar
 
 
 
