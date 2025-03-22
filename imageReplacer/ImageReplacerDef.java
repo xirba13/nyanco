@@ -10,7 +10,7 @@ public class ImageReplacerDef {
 
     public static void main(String[] args) throws IOException {
         String filePath = "nyanco.sp";
-        String newImagePath = "68.gif"; // Imagen de reemplazo
+        String newImagePath = "73.gif"; // Imagen de reemplazo
         // Pigge: 65
         // Jackie Peng: 66
         // Gory: 67
@@ -28,7 +28,7 @@ public class ImageReplacerDef {
         // The Face: 79
         // Mr. Sign: 82 (alredy in the game)
         // Mooth: 83
-        int imageNumber = 76; // Imagen que queremos reemplazar
+        int imageNumber = 83; // Imagen que queremos reemplazar
 
 
 
