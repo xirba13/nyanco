@@ -1,6 +1,6 @@
 PackageURL = http://appli.docomomarket.ne.jp/detail/BUY002_A2_001?uid=NULLGWDOCOMO&guid=on&cid=10000009092&urlRandomValue=d4fVYeAf2X5jjCHI2kBe
 TrustedAPID = 10000009092
-AppSize = 119978
+AppSize = 119911
 AppMainTitle = 160.gif
 AppName = ˘{Ç…Ç·ÇÒÇ±ëÂêÌëà
 AppVer = 1.0.2
@@ -9,5 +9,5 @@ AppClass = Main
 SPsize = 858416
 UseBrowser = launch
 UseNetwork = http
-LastModified = Mon, 24 Mar 2025 20:17:19
+LastModified = Mon, 24 Mar 2025 20:33:00
 AppIcon = 48.gif,96.gif
