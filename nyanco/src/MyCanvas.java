@@ -7466,14 +7466,18 @@ class MyCanvas extends Canvas implements Runnable
     }
     
     public void g_load(final int n) {
+    	String pos = "";
         try {
             if (MyCanvas.img[n] == null) {
-                (MyCanvas.mimg[n] = MediaManager.getImage("scratchpad:///0;pos=" + (1011 + (MyCanvas.data_offset.length - 1) * 4 + MyCanvas.data_offset[n]) + ",length=" + (MyCanvas.data_offset[n + 1] - MyCanvas.data_offset[n]))).use();
+            	pos = "scratchpad:///0;pos=" + (1011 + (MyCanvas.data_offset.length - 1) * 4 + MyCanvas.data_offset[n]) + ",length=" + (MyCanvas.data_offset[n + 1] - MyCanvas.data_offset[n]);
+                (MyCanvas.mimg[n] = MediaManager.getImage(pos)).use();
                 MyCanvas.img[n] = MyCanvas.mimg[n].getImage();
                 System.gc();
             }
         }
         catch (final ConnectionException ex) {
+        	ex.printStackTrace();
+        	System.out.println(pos);
             System.out.println("\u8aad\u307f\u8fbc\u307f\u30a8\u30e9\u30fc\uff1a" + ex.toString());
         }
     }
