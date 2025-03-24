@@ -3237,7 +3237,7 @@ class MyCanvas extends Canvas implements Runnable
                         MyCanvas.is.close();
                     }
                     catch (final Exception ex) {}
-                    this.taiken_flg = 1;
+                    this.taiken_flg = 0;
                     this.save();
                     if (MyCanvas.sivar[0] == 0 && MyCanvas.sivar[7] != 1) {
                         this.taikenkokuti();
