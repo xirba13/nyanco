@@ -6,25 +6,25 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
-public class ImageReplacerDef {
+public class ImageReplacerDef2 {
 
     public static void main(String[] args) throws IOException {
         String filePath = "nyanco.sp";
-        String newImagePath = "00073.gif"; // Imagen de reemplazo
+        String newImagePath = "../optimized_images/00083.gif"; // Imagen de reemplazo
         // Pigge: 65
         // Jackie Peng: 66
         // Gory: 67
         // Baa Baa: 68
         // Sir Seal: 69
-        // Le'Boin: 70 TODO
+        // Le'Boin: 70
         // Kang Roo: 71
         // One Horn: 72
-        // Techaer Bear: 73 TODO
-        // Croco: 74 
+        // Techaer Bear: 73
+        // Croco: 74
         // B.B. Bunny: 75
         // Squire Rel: 76
         // Assassin Bear: 77
-        // Shy Boy: 78 TODO
+        // Shy Boy: 78
         // The Face: 79
         // Mr. Sign: 82 (alredy in the game)
         // Mooth: 83
@@ -35,7 +35,7 @@ public class ImageReplacerDef {
         // Lizard Cat: 40
         // Titan Cat: 41
         // Giraffe Cat: 47
-        int imageNumber = 73; // Imagen que queremos reemplazar
+        int imageNumber = 83; // Imagen que queremos reemplazar
 
 
 
@@ -64,40 +64,64 @@ public class ImageReplacerDef {
         spFile.seek(spFile.getFilePointer() + 11);
 
         int[] offsets = new int[numImages];
-
+        int minBytesUsed = 1; // Al menos 1 byte se debe usar (para evitar offset 0)
+        
+        // Asumimos que offsets[0] ya está definido (o se lo asigna previamente)
         for (int i = 1; i < offsets.length; i++) {
             // El último offset (el del zip) está un poco antes que los de los gif
             if (i == 264) {
                 spFile.seek(1066);
             }
-
+        
             // En el archivo número 13, se salta un byte
             if (i == 13) {
                 spFile.readUnsignedByte();
             }
-
-            int offset = 0;
-            boolean foundNonZero = false;
-            int shift = 0;
-
-            // Leer los 3 bytes
-            for (int j = 0; j < 4; ++j) {
-                int byteValue = spFile.readUnsignedByte(); // Leer byte actual
-
-                // Si encontramos un byte diferente de 0, comenzamos a construir el número
-                if (byteValue != 0 || foundNonZero) {
-                    foundNonZero = true;
-                    offset += byteValue << (shift * 8);
-                    shift++;
+        
+            int previousOffset = offsets[i - 1];
+            boolean validOffset = false;
+            
+            // Se vuelve a leer el mismo offset hasta que el valor leído sea mayor que el anterior
+            while (!validOffset) {
+                long startPos = spFile.getFilePointer(); // guardar posición de inicio para re-leer si es necesario
+                int offset = 0;
+                boolean foundNonZero = false;
+                int shift = 0;
+                int bytesUsed = 0;
+                
+                // Leer 4 bytes en orden little-endian
+                for (int j = 0; j < 4; ++j) {
+                    int byteValue = spFile.readUnsignedByte();
+                    // Si encontramos un byte distinto de 0 o ya habíamos empezado, lo usamos para construir el número
+                    if (byteValue != 0 || foundNonZero) {
+                        foundNonZero = true;
+                        offset += byteValue << (shift * 8);
+                        shift++;
+                        bytesUsed++;
+                    }
+                }
+                
+                // Si usamos menos bytes que el mínimo requerido, rellenamos con ceros a la derecha
+                while (bytesUsed < minBytesUsed) {
+                    offset <<= 8; // Añadimos un byte 0 a la derecha (multiplica por 256)
+                    bytesUsed++;
+                }
+                
+                // Validar que el offset leído sea mayor que el anterior
+                if (offset > previousOffset) {
+                    validOffset = true;
+                    offsets[i] = offset;
+                    System.out.println("Offset de la imagen " + i + ": " + offset + " (Bytes usados: " + bytesUsed + ")");
+                } else {
+                    // Si no es mayor, se incrementa el mínimo de bytes usados y se vuelve a leer desde la misma posición
+                    minBytesUsed++;
+                    spFile.seek(startPos);
                 }
             }
-
-            // Almacenar el offset
-            offsets[i] = offset;
-
-            // Mostrar el resultado
-            System.out.println("Offset de la imagen " + i + ": " + offset);
         }
+        
+        
+        
 
 
         System.out.println(spFile.getFilePointer());
@@ -178,7 +202,7 @@ public class ImageReplacerDef {
 
         System.out.println("Reemplazo exitoso. Se creó un respaldo en: " + backupFile.getName());
 
-        System.out.println("Imagen reemplazada correctamente.");
+        System.out.println("Imagen " + (imageNumber + 1) + " reemplazada correctamente.");
     }
 
     // Función para leer un archivo en un array de bytes
