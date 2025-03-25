@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class ImageReplacerDef2NoBackupMethod {
 
-        public static void main(String[] args) throws IOException {
+        public static void main(String[] args) throws IOException, InterruptedException {
         // Carpeta donde están los GIFs
         String folderPath = "C:\\Users\\usuario\\workspace\\Repo\\optimized_images\\bases";
 
@@ -34,6 +34,7 @@ public class ImageReplacerDef2NoBackupMethod {
 
             // Llamar a replaceImage con la ruta del archivo y el número de imagen
             replaceImage(file.getPath(), imageNumber);
+            Thread.sleep(500);
         }
     }
 
@@ -81,9 +82,6 @@ public class ImageReplacerDef2NoBackupMethod {
         int numImages = (byte2 << 8) | byte1; // Revertir el orden
 
         numImages += 1;
-
-        // Mostrar el resultado en decimal
-        System.out.println("Número de imágenes: " + numImages);
 
 
         // Hay 2 + 4 + 2 + 1 + 1 + 1 bytes para asignar el número de imágenes, sonidos, etc.. en el
@@ -138,7 +136,6 @@ public class ImageReplacerDef2NoBackupMethod {
                 if (offset > previousOffset) {
                     validOffset = true;
                     offsets[i] = offset;
-                    System.out.println("Offset de la imagen " + i + ": " + offset + " (Bytes usados: " + bytesUsed + ")");
                 } else {
                     // Si no es mayor, se incrementa el mínimo de bytes usados y se vuelve a leer desde la misma posición
                     minBytesUsed++;
@@ -150,8 +147,6 @@ public class ImageReplacerDef2NoBackupMethod {
         
         
 
-
-        System.out.println(spFile.getFilePointer());
         spFile.seek(2131);
 
         // Determinar el inicio y fin de la imagen a reemplazar
@@ -174,23 +169,15 @@ public class ImageReplacerDef2NoBackupMethod {
         copyBytes(spFile, tempFile, (2131 + startOffset));
 
         long punteroAlInicio = tempFile.getFilePointer();
-        System.out.println("Posición antes de escribir GIF: " + tempFile.getFilePointer());
 
         // Escribir la nueva imagen
         tempFile.write(newImageData);
 
         long punteroAlFinal = tempFile.getFilePointer();
-        System.out.println("Posición después de escribir GIF: " + tempFile.getFilePointer());
-        System.out.println("Tamaño del GIF en el fichero: " + (punteroAlFinal - punteroAlInicio));
 
         // Copiar el resto del archivo
         spFile.seek(endOffset + 2131);
         copyBytes(spFile, tempFile, (int) (spFile.length() - endOffset));
-
-        System.out.println("Offsets antes del reemplazo:");
-        for (int i = 0; i < offsets.length; i++) {
-            System.out.println("Imagen " + i + ": " + offsets[i]);
-        }
 
 
         // Ajustar los offsets y escribirlos en el nuevo archivo
@@ -206,11 +193,6 @@ public class ImageReplacerDef2NoBackupMethod {
             else
                 writeFinalOffset(tempFile, offsets[i], 4, i);
 
-        }
-
-        System.out.println("Offsets después del reemplazo:");
-        for (int i = 0; i < offsets.length; i++) {
-            System.out.println("Imagen " + i + ": " + offsets[i]);
         }
 
 

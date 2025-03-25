@@ -5032,6 +5032,7 @@ class MyCanvas extends Canvas implements Runnable
                             }
                             final int n107 = this.uni_pt1[5][this.uni[0][n74][1]][this.uni[0][n74][2]];
                             final int n108 = this.uni[0][n74][4] / 10 + this.uni[0][n74][5] * 2;
+
                             if (n107 == 0) {
                                 MyCanvas.g.drawImage(MyCanvas.img[37], n106 - 17, n108 - 77, 0, 0, 69, 77);
                                 break;

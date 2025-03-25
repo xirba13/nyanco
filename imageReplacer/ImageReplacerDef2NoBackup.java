@@ -10,7 +10,7 @@ public class ImageReplacerDef2NoBackup {
 
     public static void main(String[] args) throws IOException {
         String filePath = "nyanco.sp";
-        String newImagePath = "00138.gif"; // Imagen de reemplazo
+        String newImagePath = "lizard1.gif"; // Imagen de reemplazo
         // Pigge: 65
         // Jackie Peng: 66
         // Gory: 67
@@ -35,7 +35,7 @@ public class ImageReplacerDef2NoBackup {
         // Lizard Cat: 40
         // Titan Cat: 41
         // Giraffe Cat: 47
-        int imageNumber = 138; // Imagen que queremos reemplazar
+        int imageNumber = 40; // Imagen que queremos reemplazar
 
 
 
