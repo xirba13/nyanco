@@ -35,7 +35,7 @@ public class ImageReplacerDef2 {
         // Lizard Cat: 40
         // Titan Cat: 41
         // Giraffe Cat: 47
-        int imageNumber = 139; // Imagen que queremos reemplazar
+        int imageNumber = 140; // Imagen que queremos reemplazar
 
 
 
