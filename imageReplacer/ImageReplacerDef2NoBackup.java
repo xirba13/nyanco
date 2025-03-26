@@ -1,5 +1,4 @@
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,7 +9,7 @@ public class ImageReplacerDef2NoBackup {
 
     public static void main(String[] args) throws IOException {
         String filePath = "nyanco.sp";
-        String newImagePath = "lizard1.gif"; // Imagen de reemplazo
+        String newImagePath = "titan9.gif"; // Imagen de reemplazo
         // Pigge: 65
         // Jackie Peng: 66
         // Gory: 67
@@ -35,13 +34,14 @@ public class ImageReplacerDef2NoBackup {
         // Lizard Cat: 40
         // Titan Cat: 41
         // Giraffe Cat: 47
-        int imageNumber = 40; // Imagen que queremos reemplazar
-
-
+        // UFO Cat: 48
+        // Whale Cat: 49
+        // Dragon Cat: 50
+        // Mythical Titan Cat: 51s
+        int imageNumber = 41; // Imagen que queremos reemplazar
 
         imageNumber -= 1;
         RandomAccessFile spFile = new RandomAccessFile("nyanco.sp", "r");
-
 
         // Posición donde está almacenado el número de imágenes (en tu caso, 1064)
         spFile.seek(1064);
@@ -58,41 +58,43 @@ public class ImageReplacerDef2NoBackup {
         // Mostrar el resultado en decimal
         System.out.println("Número de imágenes: " + numImages);
 
-
-        // Hay 2 + 4 + 2 + 1 + 1 + 1 bytes para asignar el número de imágenes, sonidos, etc.. en el
+        // Hay 2 + 4 + 2 + 1 + 1 + 1 bytes para asignar el número de imágenes, sonidos,
+        // etc.. en el
         // código
         spFile.seek(spFile.getFilePointer() + 11);
 
         int[] offsets = new int[numImages];
         int minBytesUsed = 1; // Al menos 1 byte se debe usar (para evitar offset 0)
-        
+
         // Asumimos que offsets[0] ya está definido (o se lo asigna previamente)
         for (int i = 1; i < offsets.length; i++) {
             // El último offset (el del zip) está un poco antes que los de los gif
             if (i == 264) {
                 spFile.seek(1066);
             }
-        
+
             // En el archivo número 13, se salta un byte
             if (i == 13) {
                 spFile.readUnsignedByte();
             }
-        
+
             int previousOffset = offsets[i - 1];
             boolean validOffset = false;
-            
-            // Se vuelve a leer el mismo offset hasta que el valor leído sea mayor que el anterior
+
+            // Se vuelve a leer el mismo offset hasta que el valor leído sea mayor que el
+            // anterior
             while (!validOffset) {
                 long startPos = spFile.getFilePointer(); // guardar posición de inicio para re-leer si es necesario
                 int offset = 0;
                 boolean foundNonZero = false;
                 int shift = 0;
                 int bytesUsed = 0;
-                
+
                 // Leer 4 bytes en orden little-endian
                 for (int j = 0; j < 4; ++j) {
                     int byteValue = spFile.readUnsignedByte();
-                    // Si encontramos un byte distinto de 0 o ya habíamos empezado, lo usamos para construir el número
+                    // Si encontramos un byte distinto de 0 o ya habíamos empezado, lo usamos para
+                    // construir el número
                     if (byteValue != 0 || foundNonZero) {
                         foundNonZero = true;
                         offset += byteValue << (shift * 8);
@@ -100,38 +102,35 @@ public class ImageReplacerDef2NoBackup {
                         bytesUsed++;
                     }
                 }
-                
-                // Si usamos menos bytes que el mínimo requerido, rellenamos con ceros a la derecha
+
+                // Si usamos menos bytes que el mínimo requerido, rellenamos con ceros a la
+                // derecha
                 while (bytesUsed < minBytesUsed) {
                     offset <<= 8; // Añadimos un byte 0 a la derecha (multiplica por 256)
                     bytesUsed++;
                 }
-                
+
                 // Validar que el offset leído sea mayor que el anterior
                 if (offset > previousOffset) {
                     validOffset = true;
                     offsets[i] = offset;
-                    System.out.println("Offset de la imagen " + i + ": " + offset + " (Bytes usados: " + bytesUsed + ")");
+                    System.out
+                            .println("Offset de la imagen " + i + ": " + offset + " (Bytes usados: " + bytesUsed + ")");
                 } else {
-                    // Si no es mayor, se incrementa el mínimo de bytes usados y se vuelve a leer desde la misma posición
+                    // Si no es mayor, se incrementa el mínimo de bytes usados y se vuelve a leer
+                    // desde la misma posición
                     minBytesUsed++;
                     spFile.seek(startPos);
                 }
             }
         }
-        
-        
-        
-
 
         System.out.println(spFile.getFilePointer());
         spFile.seek(2131);
 
         // Determinar el inicio y fin de la imagen a reemplazar
         int startOffset = offsets[imageNumber];
-        int endOffset =
-                (imageNumber + 1 < numImages) ? offsets[imageNumber + 1] : (int) spFile.length();
-
+        int endOffset = (imageNumber + 1 < numImages) ? offsets[imageNumber + 1] : (int) spFile.length();
 
         // Leer la nueva imagen
         byte[] newImageData = readFile(newImagePath);
@@ -165,7 +164,6 @@ public class ImageReplacerDef2NoBackup {
             System.out.println("Imagen " + i + ": " + offsets[i]);
         }
 
-
         // Ajustar los offsets y escribirlos en el nuevo archivo
         tempFile.seek(1064 + 2 + 11); // Posición donde comienzan los offsets
 
@@ -186,7 +184,6 @@ public class ImageReplacerDef2NoBackup {
             System.out.println("Imagen " + i + ": " + offsets[i]);
         }
 
-
         spFile.close();
         tempFile.close();
 
@@ -197,7 +194,6 @@ public class ImageReplacerDef2NoBackup {
         // Renombrar el archivo temporal como el nuevo archivo principal
         File tempFileRef = new File("temp.sp");
         tempFileRef.renameTo(originalFile); // Renombrar temp.sp -> nyanco.sp
-
 
         System.out.println("Imagen " + (imageNumber + 1) + " reemplazada correctamente.");
     }
@@ -233,7 +229,6 @@ public class ImageReplacerDef2NoBackup {
 
         ArrayList<Integer> bytes = new ArrayList<>();
 
-
         // Generar los bytes en orden Little-Endian
         for (int i = 0; i < numBytes; i++) {
             bytes.add((value >> (i * 8)) & 0xFF);
@@ -249,7 +244,8 @@ public class ImageReplacerDef2NoBackup {
             bytes.add(0);
         }
 
-        // Rellenar con ceros al PRINCIPIO si la cantidad de bytes escritos es menor a numBytes
+        // Rellenar con ceros al PRINCIPIO si la cantidad de bytes escritos es menor a
+        // numBytes
         while (bytes.size() < numBytes) {
             bytes.addFirst(0);
         }
@@ -277,11 +273,12 @@ public class ImageReplacerDef2NoBackup {
         }
 
     }
-    // TODO BORRAR LOS PRIMEROS 64 BYTES (LAS PRIMERAS 4 LÍNEAS) ANTES DE METERLO EN EL JUEGO
-    // PARA METERLO EN EL JUEGO, DESDE DOJAEMULATOR: TOOLS -> SCRATCHPAD -> REPLACE -> Seleccionar
+    // TODO BORRAR LOS PRIMEROS 64 BYTES (LAS PRIMERAS 4 LÍNEAS) ANTES DE METERLO EN
+    // EL JUEGO
+    // PARA METERLO EN EL JUEGO, DESDE DOJAEMULATOR: TOOLS -> SCRATCHPAD -> REPLACE
+    // -> Seleccionar
     // el fichero -> APLLY -> SET
-    // SI SSALE UN WARNING DE QUE NO S EHAN COPIDAODTODOS LOS DATOS, AMPLIAR EL TAMAÑO DEL SP EN
+    // SI SSALE UN WARNING DE QUE NO S EHAN COPIDAODTODOS LOS DATOS, AMPLIAR EL
+    // TAMAÑO DEL SP EN
     // DOJAEMULATOR: ADF CONFIGURAION
 }
-
-

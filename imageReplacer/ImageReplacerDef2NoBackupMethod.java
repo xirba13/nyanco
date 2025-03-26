@@ -168,12 +168,8 @@ public class ImageReplacerDef2NoBackupMethod {
         spFile.seek(0);
         copyBytes(spFile, tempFile, (2131 + startOffset));
 
-        long punteroAlInicio = tempFile.getFilePointer();
-
         // Escribir la nueva imagen
         tempFile.write(newImageData);
-
-        long punteroAlFinal = tempFile.getFilePointer();
 
         // Copiar el resto del archivo
         spFile.seek(endOffset + 2131);
