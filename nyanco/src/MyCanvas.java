@@ -5426,7 +5426,7 @@ class MyCanvas extends Canvas implements Runnable
                             if (n141 < 10 || n141 > 13) {
                                 break;
                             }
-                            MyCanvas.g.drawImage(MyCanvas.img[50], n140 - 32, n142 - 88, 0, 213, 90, 90);
+                            MyCanvas.g.drawImage(MyCanvas.img[50], n140 - 32, n142 - 88, 0, 213, 90, 90);                                                                                                                                                                              
                             if (n141 >= 10 && n141 <= 12) {
                                 MyCanvas.g.drawImage(MyCanvas.img[50], n140 - 49, n142 - 50, 101 + (n141 - 10) / 2 * 58, 199 + (n141 - 10) % 2 * 51, 58, 51);
                                 break;
