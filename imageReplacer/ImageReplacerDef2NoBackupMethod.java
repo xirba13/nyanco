@@ -11,7 +11,7 @@ public class ImageReplacerDef2NoBackupMethod {
 
         public static void main(String[] args) throws IOException, InterruptedException {
         // Carpeta donde están los GIFs
-        String folderPath = "C:\\Users\\usuario\\workspace\\Repo\\optimized_images\\bases";
+        String folderPath = "C:\\Users\\usuario\\workspace\\Repo\\optimized_images";
 
         // Obtener todos los archivos GIF en la carpeta
         File folder = new File(folderPath);
@@ -34,7 +34,7 @@ public class ImageReplacerDef2NoBackupMethod {
 
             // Llamar a replaceImage con la ruta del archivo y el número de imagen
             replaceImage(file.getPath(), imageNumber);
-            Thread.sleep(500);
+            Thread.sleep(1000);
         }
     }
 
