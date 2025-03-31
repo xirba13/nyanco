@@ -9,7 +9,7 @@ public class ImageReplacerDef2NoBackup {
 
     public static void main(String[] args) throws IOException {
         String filePath = "nyanco.sp";
-        String newImagePath = "mythictitan8.gif"; // Imagen de reemplazo
+        String newImagePath = "00130.gif"; // Imagen de reemplazo
         // Pigge: 65
         // Jackie Peng: 66
         // Gory: 67
@@ -38,7 +38,7 @@ public class ImageReplacerDef2NoBackup {
         // Whale Cat: 49
         // Dragon Cat: 50
         // Mythical Titan Cat: 51
-        int imageNumber = 51; // Imagen que queremos reemplazar
+        int imageNumber = 130; // Imagen que queremos reemplazar
 
         imageNumber -= 1;
         RandomAccessFile spFile = new RandomAccessFile("nyanco.sp", "r");
